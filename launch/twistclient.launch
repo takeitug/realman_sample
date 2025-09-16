@@ -1,0 +1,41 @@
+<launch>
+  <!-- ==============================
+       1. URDF (xacro) を読み込んで robot_description に登録
+       ============================== -->
+  <param name="robot_description"
+         command="$(find xacro)/xacro '$(find rm_description)/urdf/RM65_6F/rm_65_6f_description.urdf.xacro'" />
+         
+  <!-- ==============================
+       3. rm_twistclient ノード
+       （Twist → JointPos 変換ノード）
+       ============================== -->
+  <node pkg="realman_sample" type="rm_twistclient" name="rm_twistclient" output="screen">
+    <!-- KDLチェーンの始点と終点 -->
+    <param name="base_link" value="base_link"/>
+    <param name="tip_link"  value="Link6"/>
+
+    <!-- 制御周波数 -->
+    <param name="rate_hz"   value="100"/>
+    <!-- Twistコマンド喪失時に停止するまでの時間 [s] -->
+    <param name="watchdog_sec" value="0.15"/>
+    <!-- ダンピング定数（ヤコビアン擬似逆用） -->
+    <param name="damping" value="1e-3"/>
+
+    <!-- 関節の名前（URDFと一致させること） -->
+    <rosparam param="joint_names">[joint1, joint2, joint3, joint4, joint5, joint6]</rosparam>
+
+    <!-- 各関節の速度上限 [rad/s] -->
+    <rosparam param="joint_vel_limits">[1.5, 1.5, 1.5, 1.5, 1.5, 1.5]</rosparam>
+
+    <!-- 入力Twistトピック（エンドエフェクタ速度指令） -->
+    <param name="twist_topic" value="/twist_cmd"/>
+    <!-- JointState入力（実機やシミュレータから） -->
+    <param name="joint_states_topic" value="/joint_states"/>
+    <!-- 出力トピック（rm_driverに送る関節角度指令） -->
+    <param name="out_topic" value="/rm_driver/JointPos"/>
+    
+    <!-- tau_pred=0.38:small delay & no over shoot, 0.0:delay & stable, 0.5:no delay & over shoot -->
+    <param name="tau_pred"   value="0.38"/>
+    <param name="alpha_lead"   value="0.0"/>
+  </node>
+</launch>
