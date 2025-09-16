@@ -8,9 +8,16 @@ Currently developed and tested with the **RM65_6F** robot arm from the RM series
 
 ## Usage
 
-### Velocity Control Node
+* Before start velocity control
 ```bash
-roslaunch realman_sample twistclient
+roslaunch rm_control rm_<arm_type>_control.launch
+````
+```bash
+roslaunch rm_bringup rm_<arm_type>_robot.launch
+````
+### Velocity Control
+```bash
+roslaunch realman_sample twistclient.launch
 ````
 
 * Publish `geometry_msgs/Twist` messages to `/twist_cmd`.
