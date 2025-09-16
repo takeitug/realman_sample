@@ -2,6 +2,7 @@
 
 This repository provides sample code for **Cartesian velocity control** of the **Realman Robot** on **ROS Noetic**.  
 It depends on the Realman official ROS driver **[`rm_robot`](https://github.com/realmanrobot/rm_robot)** .
+Currently developed and tested with the **RM65_6F** robot arm from the RM series.
 
 ---
 
@@ -40,6 +41,16 @@ rosrun realman_sample demo
 
 Demonstration that combines **MoveJ joint position control** with **Cartesian velocity control**.
 The robot first moves to a target joint configuration, then performs a constant velocity motion along the Z-axis, and finally stops.
+
+---
+
+## Parameters
+
+### `tau_pred`
+
+* Controls the compensation for the delay between the command and the real robot.
+* Recommended range: **0.0 – 0.5**.
+* Larger values reduce the apparent delay but increase the risk of overshoot.
 
 ---
 
