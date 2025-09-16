@@ -31,7 +31,7 @@ roslaunch realman_sample twistclient.launch
 ### Joystick Control
 
 ```bash
-roslaunch realman_sample teleop
+roslaunch realman_sample teleop.launch
 ```
 
 Example of velocity control with a DualSense (PS5 controller).
@@ -46,8 +46,7 @@ Example of velocity control with a DualSense (PS5 controller).
 rosrun realman_sample demo
 ```
 
-Demonstration that combines **MoveJ joint position control** with **Cartesian velocity control**.
-The robot first moves to a target joint configuration, then performs a constant velocity motion along the Z-axis, and finally stops.
+src/demo.cpp that combines **MoveJ joint position control** with **Cartesian velocity control**.
 
 ---
 
