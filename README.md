@@ -1,7 +1,7 @@
 # realman_sample
 
 This repository provides sample code for **Cartesian velocity control** of the **Realman Robot** on **ROS Noetic**.  
-It depends on the official driver **[`rm_robot`](https://github.com/realmanrobot/rm_robot)** published by Realman.
+It depends on the Realman official ROS driver **[`rm_robot`](https://github.com/realmanrobot/rm_robot)** .
 
 ---
 
@@ -9,7 +9,7 @@ It depends on the official driver **[`rm_robot`](https://github.com/realmanrobot
 
 ### Velocity Control Node
 ```bash
-roslaunch realman_sample twistclient.launch
+roslaunch realman_sample twistclient
 ````
 
 * Publish `geometry_msgs/Twist` messages to `/twist_cmd`.
@@ -23,10 +23,10 @@ roslaunch realman_sample twistclient.launch
 ### Joystick Control
 
 ```bash
-roslaunch realman_sample teleop.launch
+roslaunch realman_sample teleop
 ```
 
-Example of velocity control with a PS5 controller.
+Example of velocity control with a DualSense (PS5 controller).
 
 * **Circle button (○)**: enable velocity control
 * **Cross button (×)**: disable velocity control
@@ -46,7 +46,6 @@ The robot first moves to a target joint configuration, then performs a constant 
 ## Notes
 
 * Tested with **ROS Noetic** on **Ubuntu 20.04**.
-* When running on a real robot, ensure a safe environment free of collisions or interference.
 
 ```
 ```
